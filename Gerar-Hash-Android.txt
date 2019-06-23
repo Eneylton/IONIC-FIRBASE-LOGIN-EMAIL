@@ -3,7 +3,6 @@ npm install firebase angularfire2 --save
 git remote add origin https://github.com/Eneylton/IONIC-FIRBASE-LOGIN-EMAIL.git
 git push -u origin master
 
-
 npm install firebase angularfire2 --save
 
 ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="348711872459281" --variable APP_NAME="login-pureza"

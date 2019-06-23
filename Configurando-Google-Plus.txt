@@ -1,0 +1,22 @@
+754961546979-kifcu2ds20o30rv35v2pvv98dc3ubcta.apps.googleusercontent.com
+
+srupX7eqoH1Bjza7Oufj2vaR
+
+
+pacote:
+com.purezanegocios.web.strore.br
+
+apelido:
+Pureza Negocios Store
+
+
+Gerear chave
+keytool -exportcert -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+
+SHA1: CD:E1:5C:08:88:A6:0B:CD:FC:83:28:F8:26:BB:67:F9:4A:FF:CD:F8
+
+npm install promise-polyfill --save
+
+ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=myreversedclientid
+
+npm install --save @ionic-native/google-plus@4

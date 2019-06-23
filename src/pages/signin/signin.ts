@@ -56,6 +56,17 @@ export class SigninPage {
     }
   }
 
+  signInWithGoogle(){
+    this.authService.signInWithGoogle()
+    .then(()=>{
+      this.navCtrl.setRoot('HomePage');
+    })
+    .catch((error)=>{
+      this.toastCtrl.create({ duration:3000, position: 'bottom', message: 'Error ao Efetuar o Login !!!!'})
+      .present();
+    })
+  }
+
   openRedefinir(){
     this.navCtrl.setRoot('ResetpasswordPage');
   }

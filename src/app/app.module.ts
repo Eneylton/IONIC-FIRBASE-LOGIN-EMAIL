@@ -8,12 +8,13 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth/auth-service';
 import { ContactService } from '../providers/contact-service/contact-service';
+
+import { GooglePlus } from '@ionic-native/google-plus';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAXI9WbmbHNSOWTX05No7ymo0qwHgcR1co",
@@ -45,7 +46,8 @@ const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    ContactService
+    ContactService,
+    GooglePlus
   ]
 })
 export class AppModule {}
