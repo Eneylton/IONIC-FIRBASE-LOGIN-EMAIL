@@ -1,0 +1,3 @@
+npm install firebase angularfire2 --save
+
+git remote add origin https://github.com/Eneylton/IONIC-FIRBASE-LOGIN-EMAIL.git
