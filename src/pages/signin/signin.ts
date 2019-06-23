@@ -56,5 +56,8 @@ export class SigninPage {
     }
   }
 
+  openRedefinir(){
+    this.navCtrl.setRoot('ResetpasswordPage');
+  }
   
 }
