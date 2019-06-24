@@ -67,6 +67,20 @@ export class SigninPage {
     })
   }
 
+  signInWithFacebook() {
+    this.authService.signInWithFacebook()
+      .then(() => {
+
+        console.log("Chegou akkiii !!!!")
+
+        this.navCtrl.setRoot('HomePage');
+      })
+      .catch((error) => {
+        this.toastCtrl.create({ duration: 3000, position: 'bottom', message: 'Erro ao efetuar o login' })
+          .present();
+      });
+  }
+
   openRedefinir(){
     this.navCtrl.setRoot('ResetpasswordPage');
   }

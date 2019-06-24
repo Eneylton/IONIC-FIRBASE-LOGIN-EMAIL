@@ -4,7 +4,7 @@ import { User } from './user';
 import * as firebase from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Observable } from "rxjs/Observable";
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +13,7 @@ export class AuthService {
 
   constructor(
     private angularFireAuth: AngularFireAuth,
+    private facebook: Facebook,
     private googlePlus: GooglePlus) {
 
     this.user = angularFireAuth.authState;
@@ -27,21 +28,34 @@ export class AuthService {
       .then(res => {
         return this.angularFireAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
           .then(success => {
-            console.log("Firebase success: " + JSON.stringify(success));
+            console.log(JSON.stringify(success));
           }).catch((err) => {
             console.log(err);
           });
       }).catch((error) => { console.log(error) });
   }
 
+  signInWithFacebook() {
+    return this.facebook.login(['public_profile', 'email'])
+      .then((res: FacebookLoginResponse) => {
+        return this.angularFireAuth.auth.signInWithCredential(firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken))
+        .then(success => {
+          console.log("Firebase success: " + JSON.stringify(success));
+        }).catch((err) => {
+          console.log(err);
+        });
+    }).catch((error) => { console.log(error) });
+  }
 
   createUser(user: User) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
   }
 
+
   singIn(user: User) {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(user.email, user.password);
   }
+
 
   signOut() {
 
@@ -55,11 +69,19 @@ export class AuthService {
             return this.signOutFirebase();
           });
       }
+
+      else if (provider.providerId == firebase.auth.FacebookAuthProvider.PROVIDER_ID) { // Se for o gooogle
+        return this.facebook.logout()
+          .then(() => {
+            return this.signOutFirebase();
+          });
+      }
+
     }
     return this.signOutFirebase();
   }
 
-  
+
   signOutFirebase() {
 
     return this.angularFireAuth.auth.signOut();
@@ -70,8 +92,5 @@ export class AuthService {
     return this.angularFireAuth.auth.sendPasswordResetEmail(email);
 
   }
-
-
-
 
 }
